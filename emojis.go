@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	emojiRegex = regexp.MustCompile(`<:[A-z 0-9]+:[0-9]+>`)
+	emojiRegex = regexp.MustCompile(`<(a|):[A-z 0-9]+:[0-9]+>`)
 )
 
 /*

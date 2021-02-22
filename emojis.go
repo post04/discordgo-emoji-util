@@ -62,10 +62,11 @@ func EncodeImageEmoji(link string) string {
 	return "data:image/png;base64," + encoded
 }
 
-// Emoji - contains the emojis id and name
+// Emoji - contains the emojis id and name and if the emoji is animated or not.
 type Emoji struct {
-	ID   string
-	Name string
+	ID       string
+	Name     string
+	Animated bool
 }
 
 /*
@@ -84,9 +85,11 @@ func MatchEmojis(messageContent string) []*Emoji {
 		name := p[1]
 		id = strings.ReplaceAll(id, ">", "")
 		toReturn = append(toReturn, &Emoji{
-			ID:   id,
-			Name: name,
+			ID:       id,
+			Name:     name,
+			Animated: strings.HasPrefix(em, "<a:"),
 		})
 	}
 	return toReturn
 }
+
